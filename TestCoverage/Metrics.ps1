@@ -1,0 +1,1 @@
+&"..\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe" -output:results.xml -register:user `"-filter:+[Bowling]*`" -target:`"$env:VS140COMNTOOLS..\IDE\mstest.exe`" -targetargs:/testcontainer:..\BowlingTest\bin\Debug\BowlingTest.dll
