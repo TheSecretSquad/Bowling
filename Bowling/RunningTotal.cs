@@ -6,8 +6,6 @@
 
         public RunningTotal() : this(0) { }
 
-        public RunningTotal(int total) : this(new PositiveInteger(total)) { }
-
         public RunningTotal(PositiveInteger total)
         {
             this.total = total;
@@ -16,24 +14,29 @@
         public virtual RunningTotal AddThrow(Throw aThrow)
         {
             if(aThrow != null)
-                return AddRunningTotal(aThrow.AsRunningTotal());
+                return this + aThrow;
 
             return this;
         }
 
-        public virtual RunningTotal AddRunningTotal(RunningTotal otherRunningTotal)
+        public static implicit operator RunningTotal(PositiveInteger pi)
         {
-            return otherRunningTotal.AddTotal(total.AsInteger());
+            return new RunningTotal(pi);
         }
 
-        public virtual RunningTotal AddTotal(int total)
+        public static implicit operator PositiveInteger(RunningTotal rt)
         {
-            return new RunningTotal(this.total.AsInteger() + total);
+            return rt.total;
         }
 
-        public virtual RunningTotal RestartFromTotalWithThrows(RunningTotal otherRunningTotal, Throw throw1, Throw throw2)
+        public static implicit operator RunningTotal(int i)
         {
-            return otherRunningTotal.AddThrow(throw1).AddThrow(throw2);
+            return new RunningTotal(i);
+        }
+
+        public static implicit operator int(RunningTotal rt)
+        {
+            return rt.total;
         }
 
         public virtual void PrintOn(IRunningTotalPrinter runningTotalPrinter)

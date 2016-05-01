@@ -136,10 +136,12 @@ namespace BowlingTest
         public void WhenRebasingRunningTotal_RecalculatesRunningTotalWithNewBaseAndExistingThrows()
         {
             RunningTotal otherRunningTotal = Mock.Of<RunningTotal>();
+            Mock.Get(otherRunningTotal).Setup(rt => rt.AddThrow(It.IsAny<Throw>())).Returns(otherRunningTotal);
 
             frame.RebaseWithRunningTotal(otherRunningTotal);
 
-            Mock.Get(runningTotal).Verify(rt => rt.RestartFromTotalWithThrows(otherRunningTotal, throw1, throw2));
+            Mock.Get(otherRunningTotal).Verify(ort => ort.AddThrow(throw1));
+            Mock.Get(otherRunningTotal).Verify(ort => ort.AddThrow(throw2));
         }
 
         [TestMethod]

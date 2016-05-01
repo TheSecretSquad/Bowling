@@ -8,7 +8,7 @@ namespace BowlingTest
     public class BonusTest
     {
         Frames frames;
-        int targetFrameNumber;
+        PositiveInteger targetFrameNumber;
         int numberOfThrowsRequired;
         Frame frame;
         Throw aThrow;
@@ -22,7 +22,7 @@ namespace BowlingTest
             numberOfThrowsRequired = 5;
             frame = Mock.Of<Frame>();
             aThrow = Mock.Of<Throw>();
-            bonus = new Bonus(targetFrameNumber, numberOfThrowsRequired);
+            bonus = new Bonus(new PositiveInteger(targetFrameNumber), new PositiveInteger(numberOfThrowsRequired));
         }
 
         private void ContributeRequiredNumberOfThrows()
@@ -51,13 +51,6 @@ namespace BowlingTest
         private void VerifyRequestsBonusFromFrameNumberToFrameNumber(int fromFrameNumber, int toFrameNumber)
         {
             Mock.Get(frames).Verify(frs => frs.RequestBonusFromFrameNumberToFrameNumber(fromFrameNumber, toFrameNumber));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NegativeFrameNumberException))]
-        public void WhenConstructing_CannotHaveNegativeThrowNumber()
-        {
-            Bonus.Strike(-1);
         }
 
         [TestMethod]

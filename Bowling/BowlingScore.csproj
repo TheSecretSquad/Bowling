@@ -51,7 +51,6 @@
     <Compile Include="Printers\IPositiveIntegerPrinter.cs" />
     <Compile Include="Printers\IFramePrinter.cs" />
     <Compile Include="Printers\IFramesPrinter.cs" />
-    <Compile Include="NegativeFrameNumberException.cs" />
     <Compile Include="Printers\IPrinter.cs" />
     <Compile Include="Printers\IRunningTotalPrinter.cs" />
     <Compile Include="NoBonus.cs" />

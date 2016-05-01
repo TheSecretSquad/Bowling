@@ -4,25 +4,22 @@ namespace Bowling
 {
     public class Bonus : IBonus
     {
-        public static IBonus Strike(int toFrameNumber)
+        public static IBonus Strike(PositiveInteger toFrameNumber)
         {
-            return new Bonus(toFrameNumber, 2);
+            return new Bonus(toFrameNumber, new PositiveInteger(2));
         }
 
-        private int contributeToFrameNumber;
-        private int takeFromFrameNumber;
-        private int numberOfThrowsRequired;
-        private int numberOfThrowsReceived;
+        private PositiveInteger contributeToFrameNumber;
+        private PositiveInteger takeFromFrameNumber;
+        private PositiveInteger numberOfThrowsRequired;
+        private PositiveInteger numberOfThrowsReceived;
 
-        public Bonus(int toFrameNumber, int numberOfThrowsRequired)
+        public Bonus(PositiveInteger toFrameNumber, PositiveInteger numberOfThrowsRequired)
         {
-            if (toFrameNumber < 0)
-                throw new NegativeFrameNumberException();
-
             this.contributeToFrameNumber = toFrameNumber;
             this.numberOfThrowsRequired = numberOfThrowsRequired;
-            this.numberOfThrowsReceived = 0;
-            this.takeFromFrameNumber = toFrameNumber + 1;
+            this.numberOfThrowsReceived = new PositiveInteger(0);
+            this.takeFromFrameNumber = ++toFrameNumber;
         }
 
         public void ContributeThrowForFrame(Throw aThrow, Frame frame)
@@ -46,7 +43,8 @@ namespace Bowling
 
         private void TargetNextFrameNumber() => ++takeFromFrameNumber;
 
-        private void AcceptThrowForFrame(Throw aThrow, Frame frame) => frame.AcceptThrow(aThrow);
+        private void AcceptThrowForFrame(Throw aThrow, Frame frame) =>
+            frame.AcceptThrow(aThrow);
 
         private void IfBonusIsNotFulfilledDo(Action action)
         {
@@ -54,7 +52,8 @@ namespace Bowling
                 action();
         }
 
-        private bool IsBonusFulfilled() => numberOfThrowsReceived == numberOfThrowsRequired;
+        private bool IsBonusFulfilled() =>
+            numberOfThrowsReceived == numberOfThrowsRequired;
 
         public void RequestFromFrames(Frames frames)
         {

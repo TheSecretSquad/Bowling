@@ -12,6 +12,11 @@
             Validate();
         }
 
+        public PositiveInteger(PositiveInteger other)
+        {
+            this.value = other.value;
+        }
+
         private void Validate()
         {
             if (value < 0)
@@ -23,16 +28,21 @@
             return value.GetHashCode();
         }
 
-        public int AsInteger()
-        {
-            return value;
-        }
-
         public virtual void PrintOn(IPositiveIntegerPrinter positiveIntegerPrinter)
         {
             positiveIntegerPrinter.BeginPrint(this);
             positiveIntegerPrinter.PrintValue(value);
             positiveIntegerPrinter.EndPrint(this);
+        }
+
+        public static implicit operator PositiveInteger(int i)
+        {
+            return new PositiveInteger(i);
+        }
+
+        public static implicit operator int(PositiveInteger pi)
+        {
+            return pi.value;
         }
     }
 }

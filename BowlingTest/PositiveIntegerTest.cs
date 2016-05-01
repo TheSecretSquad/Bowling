@@ -29,6 +29,27 @@ namespace BowlingTest
         }
 
         [TestMethod]
+        public void ConstructsWithCorrectValueFromOtherPositiveInteger()
+        {
+            PositiveInteger ten = new PositiveInteger(10);
+            Assert.AreEqual(ten, new PositiveInteger(ten));
+        }
+
+        [TestMethod]
+        public void TestImplicitConversions()
+        {
+            PositiveInteger one = 1;
+            int two = new PositiveInteger(2);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NegativeValueException))]
+        public void ImplicitConversionFromNegativeIntFails()
+        {
+            PositiveInteger ten = -10;
+        }
+
+        [TestMethod]
         public void SameValuesAreEqual()
         {
             Assert.AreEqual(new PositiveInteger(5), new PositiveInteger(5));
@@ -62,12 +83,6 @@ namespace BowlingTest
         public void NotEqualsOperatorForDifferentInstancesWithDifferentValueIsTrue()
         {
             Assert.IsTrue(new PositiveInteger(5) != new PositiveInteger(4));
-        }
-
-        [TestMethod]
-        public void AsIntegerCreatesIntegerWithSameValue()
-        {
-            Assert.AreEqual(5, new PositiveInteger(5).AsInteger());
         }
 
         [TestMethod]

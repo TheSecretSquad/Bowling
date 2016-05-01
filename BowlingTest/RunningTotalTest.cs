@@ -24,13 +24,6 @@ namespace BowlingTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NegativeValueException))]
-        public void WhenConstruted_DoesNotAcceptValuesLessThanZero()
-        {
-            new RunningTotal(-1);
-        }
-
-        [TestMethod]
         public void SameValuesAreEqual()
         {
             Assert.AreEqual(new RunningTotal(5), new RunningTotal(5));
@@ -90,13 +83,12 @@ namespace BowlingTest
         }
 
         [TestMethod]
-        public void GivenARunningTotalWithValue10_WhenRestartingFromNewTotal_GivesNewTotalWithSumOfNewRunningTotalThrows()
+        public void TestImplicitConversions()
         {
-            RunningTotal start = new RunningTotal(10);
-
-            RunningTotal restarted = start.RestartFromTotalWithThrows(new RunningTotal(5), new Throw(1), new Throw(2));
-
-            Assert.AreEqual(new RunningTotal(8), restarted);
+            RunningTotal one = 1;
+            RunningTotal two = new PositiveInteger(2);
+            PositiveInteger three = new RunningTotal(3);
+            int four = new RunningTotal(4);
         }
 
         [TestMethod]

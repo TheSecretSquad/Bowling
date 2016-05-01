@@ -72,9 +72,13 @@ namespace BowlingTest
         }
 
         [TestMethod]
-        public void AsRunningTotalCreatesRunningTotalWithSameThrowValue()
+        public void TestImplicitConversions()
         {
-            Assert.AreEqual(new RunningTotal(5), new Throw(5).AsRunningTotal());
+            Throw one = 1;
+            Throw two = new PositiveInteger(2);
+            PositiveInteger three = new Throw(3);
+            int four = new Throw(4);
+            RunningTotal five = new Throw(5);
         }
 
         [TestMethod]

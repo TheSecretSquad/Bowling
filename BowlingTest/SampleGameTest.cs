@@ -42,19 +42,19 @@ namespace BowlingTest.TestHelperTest
         {
             sampleGame.BowlAllStrikes();
             Mock.Get(bowlingScore).Verify(bsc => bsc.WriteFrame(It.IsAny<Frame>()), Times.Exactly(12));
-            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(It.IsAny<int>()), Times.Exactly(12));
-            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(1));
-            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(2));
-            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(3));
-            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(4));
-            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(5));
-            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(6));
-            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(7));
-            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(8));
-            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(9));
-            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(10));
-            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(11));
-            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(12));
+            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(It.IsAny<PositiveInteger>()), Times.Exactly(12));
+            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(new PositiveInteger(1)));
+            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(new PositiveInteger(2)));
+            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(new PositiveInteger(3)));
+            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(new PositiveInteger(4)));
+            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(new PositiveInteger(5)));
+            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(new PositiveInteger(6)));
+            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(new PositiveInteger(7)));
+            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(new PositiveInteger(8)));
+            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(new PositiveInteger(9)));
+            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(new PositiveInteger(10)));
+            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(new PositiveInteger(11)));
+            Mock.Get(sampleGameFrameFactory).Verify(sgff => sgff.Strike(new PositiveInteger(12)));
         }
     }
 }

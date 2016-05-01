@@ -1,5 +1,5 @@
 ﻿using System;
-
+// TODO: Remove printing duplication
 namespace Bowling
 {
     public class SampleGame
@@ -20,7 +20,7 @@ namespace Bowling
 
         public void BowlAllStrikes()
         {
-            BowlNFramesWithFrame(12, (frameNumber) => sampleGameFrameFactory.Strike(frameNumber));
+            BowlNFramesWithFrame(12, (frameNumber) => sampleGameFrameFactory.Strike(new PositiveInteger(frameNumber)));
         }
 
         private void BowlNFramesWithFrame(int numberOfFrames, Func<int, Frame> nextFrame)

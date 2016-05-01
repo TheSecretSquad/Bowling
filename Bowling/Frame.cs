@@ -9,7 +9,7 @@ namespace Bowling
             return new Frame();
         }
 
-        public static Frame Strike(int frameNumber)
+        public static Frame Strike(PositiveInteger frameNumber)
         {
             return new Frame(new Throw(10), null, Bonus.Strike(frameNumber), new RunningTotal());
         }
@@ -92,7 +92,7 @@ namespace Bowling
 
         public virtual void RebaseWithRunningTotal(RunningTotal runningTotal)
         {
-            this.runningTotal = this.runningTotal.RestartFromTotalWithThrows(runningTotal, throw1, throw2);
+            this.runningTotal = runningTotal.AddThrow(throw1).AddThrow(throw2);
         }
 
         public virtual void PrintOn(IFramePrinter framePrinter)

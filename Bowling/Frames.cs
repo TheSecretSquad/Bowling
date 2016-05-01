@@ -29,7 +29,7 @@ namespace Bowling
 
         private Frame LastFrame() => FrameForFrameNumber(frames.Count);
 
-        public virtual void RequestBonusFromFrameNumberToFrameNumber(int fromFrameNumber, int toFrameNumber)
+        public virtual void RequestBonusFromFrameNumberToFrameNumber(PositiveInteger fromFrameNumber, PositiveInteger toFrameNumber)
         {
             ContributeToFrameFromFrame(FrameForFrameNumber(toFrameNumber), FrameForFrameNumber(fromFrameNumber));
         }
@@ -40,11 +40,14 @@ namespace Bowling
                 toFrame.ContributeFromFrame(fromFrame);
         }
 
-        private Frame FrameForFrameNumber(int frameNumber) => FrameAtIndex(IndexOfFrameNumber(frameNumber));
+        private Frame FrameForFrameNumber(PositiveInteger frameNumber) =>
+            FrameAtIndex(IndexOfFrameNumber(frameNumber));
 
-        private Frame FrameAtIndex(int frameIndex) => frames.ElementAtOrDefault(frameIndex);
+        private Frame FrameAtIndex(int frameIndex) =>
+            frames.ElementAtOrDefault(frameIndex);
 
-        private int IndexOfFrameNumber(int frameNumber) => frameNumber - 1;
+        private int IndexOfFrameNumber(int frameNumber) =>
+            frameNumber - 1;
 
         public virtual void PrintOn(IFramesPrinter framesPrinter)
         {
