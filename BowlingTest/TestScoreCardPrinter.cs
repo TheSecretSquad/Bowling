@@ -2,7 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
-
+// TODO: Refactor to add getters for testable values. I can write tests for getters to make sure they are returning
+// the right data
 namespace BowlingTest
 {
     public class TestScoreCardPrinter : IBowlingScoreCardPrinter
@@ -37,19 +38,33 @@ namespace BowlingTest
             Assert.AreEqual(throwValue, FrameThrowValue(frameNumber, throwNumber));
         }
 
-        public void VerifyEachFrameHasNumberOfThrows(int throwValue)
+        public void VerifyEachFrameHasNumberOfThrows(int numberOfThrows)
         {
             foreach (ICollection<int> throws in frameThrows)
-                Assert.AreEqual(throwValue, throws.Count);
+                Assert.AreEqual(numberOfThrows, throws.Count);
         }
 
-        public void VerifyLastSubsetOfFramesHasScoreValue(int lastSubsetCount, int scoreValue)
+        public void VerifyEachFrameNThroughMHasNumberOfThrows(int n, int m, int numberOfThrows)
         {
-            int skipCount = frameScores.Count() - lastSubsetCount;
-
-            foreach (int frameScore in frameScores.Skip(skipCount))
-                Assert.AreEqual(scoreValue, frameScore);
+            for (int frameNumber = n; frameNumber <= m; frameNumber++)
+                Assert.AreEqual(numberOfThrows, CountThrowsForFrame(frameNumber));
         }
+
+        public void VerifyFrameNumberHasNumberOfThrows(int frameNumber, int numberOfThrows)
+        {
+            Assert.AreEqual(numberOfThrows, CountThrowsForFrame(frameNumber));
+        }
+
+        private int CountThrowsForFrame(int frameNumber) =>
+            ThrowsForFrame(frameNumber).Count;
+
+        //public void VerifyLastSubsetOfFramesHasScoreValue(int lastSubsetCount, int scoreValue)
+        //{
+        //    int skipCount = frameScores.Count() - lastSubsetCount;
+
+        //    foreach (int frameScore in frameScores.Skip(skipCount))
+        //        Assert.AreEqual(scoreValue, frameScore);
+        //}
 
         private int FrameScore(int frameNumber) =>
             frameScores.ElementAt(FrameIndex(frameNumber));

@@ -15,18 +15,35 @@ namespace Bowling
 
         public void BowlAllOpenFrames()
         {
-            BowlNFramesWithFrame(10, (frameNumber) => sampleGameFrameFactory.Open());
+            Bowl10FramesWithFrame((frameNumber) => sampleGameFrameFactory.Open());
         }
 
         public void BowlAllStrikes()
         {
-            BowlNFramesWithFrame(12, (frameNumber) => sampleGameFrameFactory.Strike(new PositiveInteger(frameNumber)));
+            Bowl9FramesWithFrame(
+                nextFrame: (frameNumber) => sampleGameFrameFactory.Strike(frameNumber),
+                tenthFrame: () => sampleGameFrameFactory.TenthFrameStrike(throw2: new Throw(10), throw3: new Throw(10)));
         }
 
-        private void BowlNFramesWithFrame(int numberOfFrames, Func<int, Frame> nextFrame)
+        private void Bowl10FramesWithFrame(Func<int, Frame> nextFrame)
         {
-            for (int frameNumber = 1; frameNumber <= numberOfFrames; frameNumber++)
+            for (int frameNumber = 1; frameNumber <= 10; frameNumber++)
                 bowlingScoreCard.WriteFrame(nextFrame(frameNumber));
+        }
+
+        private void Bowl9FramesWithFrame(Func<int, Frame> nextFrame, Func<Frame> tenthFrame)
+        {
+            for (int frameNumber = 1; frameNumber <= 9; frameNumber++)
+                bowlingScoreCard.WriteFrame(nextFrame(frameNumber));
+
+            bowlingScoreCard.WriteFrame(tenthFrame());
+        }
+
+        public void BowlAllSparesWithThrow1AndTenthFrameBonusThrow(Throw throw1, Throw tenthFrameThrow3)
+        {
+            Bowl9FramesWithFrame(
+                nextFrame: (frameNumber) => sampleGameFrameFactory.Spare(frameNumber, throw1),
+                tenthFrame: () => sampleGameFrameFactory.TenthFrameSpare(throw1, tenthFrameThrow3));
         }
     }
 }

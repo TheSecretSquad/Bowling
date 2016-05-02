@@ -4,9 +4,14 @@ namespace Bowling
 {
     public class Bonus : IBonus
     {
-        public static IBonus Strike(PositiveInteger toFrameNumber)
+        public static Bonus Strike(PositiveInteger toFrameNumber)
         {
-            return new Bonus(toFrameNumber, new PositiveInteger(2));
+            return new Bonus(toFrameNumber, 2);
+        }
+
+        public static Bonus Spare(PositiveInteger toFrameNumber)
+        {
+            return new Bonus(toFrameNumber, 1);
         }
 
         private PositiveInteger contributeToFrameNumber;

@@ -47,6 +47,13 @@ namespace BowlingTest
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidFrameException))]
+        public void WhenConstructed_CannotContainNullThrows()
+        {
+            new Frame(new Throw[1] { null }, bonus, runningTotal);
+        }
+
+        [TestMethod]
         public void WhenAnnouncingBonuses_RemembersFrameBonus()
         {
             frame.AnnounceToBonuses(bonuses);
@@ -105,24 +112,6 @@ namespace BowlingTest
         }
 
         [TestMethod]
-        public void WhenContributingToAnotherFrame_AddsOnlyValidThrows()
-        {
-            Frame frame = new Frame(null, throw2, bonus, runningTotal);
-
-            frame.ContributeToFrame(otherFrame);
-
-            Mock.Get(otherFrame).Verify(of => of.ContributeThrow(null), Times.Never);
-            Mock.Get(otherFrame).Verify(of => of.ContributeThrow(throw2));
-
-            frame = new Frame(throw1, null, bonus, runningTotal);
-
-            frame.ContributeToFrame(otherFrame);
-
-            Mock.Get(otherFrame).Verify(of => of.ContributeThrow(throw1));
-            Mock.Get(otherFrame).Verify(of => of.ContributeThrow(null), Times.Never);
-        }
-
-        [TestMethod]
         public void WhenInitializingTheNextFrame_StartsNextFrameWithPreviousFrameRunningTotal()
         {
             RunningTotal previousRunningTotal = runningTotal;
@@ -159,17 +148,6 @@ namespace BowlingTest
 
             Mock.Get(throw1).Verify(t1 => t1.PrintOn(framePrinter));
             Mock.Get(throw2).Verify(t1 => t1.PrintOn(framePrinter));
-        }
-
-        [TestMethod]
-        public void WhenPrinting_DoesNotPrintEmptyThrows()
-        {
-            Frame frameWithNullThrow1 = new Frame(null, throw2, bonus, runningTotal);
-            Frame frameWithNullThrow2 = new Frame(throw1, null, bonus, runningTotal);
-
-            frameWithNullThrow1.PrintOn(framePrinter);
-            frameWithNullThrow2.PrintOn(framePrinter);
-            // Will fail if throws are null
         }
 
         [TestMethod]

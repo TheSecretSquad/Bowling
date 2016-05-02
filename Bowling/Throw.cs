@@ -18,32 +18,19 @@
                 throw new BadThrowException();
         }
 
-        public static implicit operator Throw(PositiveInteger pi)
+        public RunningTotal AsRunningTotal()
         {
-            return new Throw(pi);
+            return new RunningTotal(value);
         }
 
-        public static implicit operator PositiveInteger(Throw t)
+        public PositiveInteger AsInteger()
         {
-            return (int)t;
+            return value;
         }
-
-        public static implicit operator Throw(int i)
-        {
-            return new Throw(i);
-        }
-
-        public static implicit operator int(Throw t)
-        {
-            return AsInt(t);
-        }
-
-        private static int AsInt(Throw t) =>
-            t?.value ?? default(int);
 
         public static implicit operator RunningTotal(Throw t)
         {
-            return new RunningTotal(t);
+            return new RunningTotal(t.AsInteger());
         }
 
         public override int GetHashCode()

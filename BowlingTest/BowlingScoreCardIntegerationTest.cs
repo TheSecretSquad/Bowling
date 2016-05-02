@@ -53,13 +53,13 @@ namespace BowlingTest
         }
 
         [TestMethod]
-        public void BowlingAllStrikesHas12Frames()
+        public void BowlingAllStrikesHas10Frames()
         {
             sampleGame.BowlAllStrikes();
 
             bowlingScoreCard.PrintOn(testScoreCardPrinter);
 
-            testScoreCardPrinter.VerifyHasNumberOfFrames(12);
+            testScoreCardPrinter.VerifyHasNumberOfFrames(10);
         }
 
         [TestMethod]
@@ -88,7 +88,48 @@ namespace BowlingTest
 
             bowlingScoreCard.PrintOn(testScoreCardPrinter);
 
-            testScoreCardPrinter.VerifyEachFrameHasNumberOfThrows(1);
+            testScoreCardPrinter.VerifyEachFrameNThroughMHasNumberOfThrows(1, 9, 1);
+            testScoreCardPrinter.VerifyFrameNumberHasNumberOfThrows(10, 3);
+        }
+
+        [TestMethod]
+        public void BowlingAllSparesHas10Frames()
+        {
+            sampleGame.BowlAllSparesWithThrow1AndTenthFrameBonusThrow(new Throw(2), new Throw(5));
+
+            bowlingScoreCard.PrintOn(testScoreCardPrinter);
+
+            testScoreCardPrinter.VerifyHasNumberOfFrames(10);
+        }
+
+        [TestMethod]
+        public void BowlingAllSparesHasCorrectScoreForEachFrame()
+        {
+            sampleGame.BowlAllSparesWithThrow1AndTenthFrameBonusThrow(new Throw(2), new Throw(5));
+
+            bowlingScoreCard.PrintOn(testScoreCardPrinter);
+
+            testScoreCardPrinter.VerifyFrameNumberHasScoreValue(1, 12);
+            testScoreCardPrinter.VerifyFrameNumberHasScoreValue(2, 24);
+            testScoreCardPrinter.VerifyFrameNumberHasScoreValue(3, 36);
+            testScoreCardPrinter.VerifyFrameNumberHasScoreValue(4, 48);
+            testScoreCardPrinter.VerifyFrameNumberHasScoreValue(5, 60);
+            testScoreCardPrinter.VerifyFrameNumberHasScoreValue(6, 72);
+            testScoreCardPrinter.VerifyFrameNumberHasScoreValue(7, 84);
+            testScoreCardPrinter.VerifyFrameNumberHasScoreValue(8, 96);
+            testScoreCardPrinter.VerifyFrameNumberHasScoreValue(9, 108);
+            testScoreCardPrinter.VerifyFrameNumberHasScoreValue(10, 123);
+        }
+
+        [TestMethod]
+        public void BowlingAllSparesEachFrameHasTwoThrows()
+        {
+            sampleGame.BowlAllSparesWithThrow1AndTenthFrameBonusThrow(new Throw(2), new Throw(5));
+
+            bowlingScoreCard.PrintOn(testScoreCardPrinter);
+
+            testScoreCardPrinter.VerifyEachFrameNThroughMHasNumberOfThrows(1, 9, 2);
+            testScoreCardPrinter.VerifyFrameNumberHasNumberOfThrows(10, 3);
         }
     }
 }

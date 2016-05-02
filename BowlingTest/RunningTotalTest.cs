@@ -83,15 +83,6 @@ namespace BowlingTest
         }
 
         [TestMethod]
-        public void TestImplicitConversions()
-        {
-            RunningTotal one = 1;
-            RunningTotal two = new PositiveInteger(2);
-            PositiveInteger three = new RunningTotal(3);
-            int four = new RunningTotal(4);
-        }
-
-        [TestMethod]
         public void WhenPrinting_BeginsAndEndsPrinting()
         {
             runningTotal.PrintOn(runningTotalPrinter);

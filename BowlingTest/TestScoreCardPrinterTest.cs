@@ -97,6 +97,20 @@ namespace BowlingTest.TestHelperTest
         }
 
         [TestMethod]
+        public void PrintingFramesWithVaryingNumberOfThrowsHasCorrectNumberOfThrowsPerFrame()
+        {
+            PrintFrameWithOneThrowValue(1);
+            PrintFrameWithThrowValues(2, 3);
+            PrintFrameWithThrowValues(4, 5);
+            PrintFrameWithThrowValues(6, 7);
+            PrintFrameWithOneThrowValue(8);
+
+            testScoreCardPrinter.VerifyEachFrameNThroughMHasNumberOfThrows(1, 1, 1);
+            testScoreCardPrinter.VerifyEachFrameNThroughMHasNumberOfThrows(2, 4, 2);
+            testScoreCardPrinter.VerifyEachFrameNThroughMHasNumberOfThrows(5, 5, 1);
+        }
+
+        [TestMethod]
         public void PrintingTotalAssociatesTotalWithCurrentFrame()
         {
             PrintFrameWithThrowValuesAndTotal(2, 4, 6);

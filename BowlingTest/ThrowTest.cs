@@ -72,16 +72,6 @@ namespace BowlingTest
         }
 
         [TestMethod]
-        public void TestImplicitConversions()
-        {
-            Throw one = 1;
-            Throw two = new PositiveInteger(2);
-            PositiveInteger three = new Throw(3);
-            int four = new Throw(4);
-            RunningTotal five = new Throw(5);
-        }
-
-        [TestMethod]
         public void PrintingThrowBeginsAndEndsPrinting()
         {
             Throw theThrow = new Throw();
