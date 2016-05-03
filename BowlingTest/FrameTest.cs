@@ -54,6 +54,13 @@ namespace BowlingTest
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidFrameException))]
+        public void WhenSpareConstructed_FailsIfThrow1DoesNotHaveSpareAvailable()
+        {
+            Frame.Spare(1, Throw.Strike());
+        }
+
+        [TestMethod]
         public void WhenAnnouncingBonuses_RemembersFrameBonus()
         {
             frame.AnnounceToBonuses(bonuses);

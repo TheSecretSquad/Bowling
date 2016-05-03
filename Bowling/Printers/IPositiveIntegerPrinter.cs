@@ -2,6 +2,6 @@
 {
     public interface IPositiveIntegerPrinter : IPrinter<PositiveInteger>
     {
-        void PrintValue(int value);
+        void PrintPositiveIntValue(int value);
     }
 }

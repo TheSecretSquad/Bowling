@@ -9,16 +9,21 @@ namespace Bowling
             new Frame();
 
         public static Frame Strike(PositiveInteger frameNumber) =>
-            new Frame(new Throw(10), Bonus.Strike(frameNumber), new RunningTotal());
+            new Frame(Throw.Strike(), Bonus.Strike(frameNumber), new RunningTotal());
 
         public static Frame TenthFrameStrike(Throw throw2, Throw throw3) =>
-            new Frame(new Throw(10), throw2, throw3, new NoBonus(), new RunningTotal());
+            new Frame(Throw.Strike(), throw2, throw3, new NoBonus(), new RunningTotal());
 
-        public static Frame Spare(PositiveInteger frameNumber, Throw throw1) =>
-            new Frame(throw1, new Throw(10 - throw1.AsInteger()), Bonus.Spare(frameNumber), new RunningTotal());
+        public static Frame Spare(PositiveInteger frameNumber, Throw throw1)
+        {
+            if(!throw1.HasSpare())
+                throw new InvalidFrameException();
+
+            return new Frame(throw1, Throw.SpareDifferenceOf(throw1), Bonus.Spare(frameNumber), new RunningTotal());
+        }
 
         public static Frame TenthFrameSpare(Throw throw1, Throw throw3) =>
-            new Frame(throw1, new Throw(10 - throw1.AsInteger()), throw3, new NoBonus(), new RunningTotal());
+            new Frame(throw1, Throw.SpareDifferenceOf(throw1), throw3, new NoBonus(), new RunningTotal());
 
         private Throw[] throws;
         private RunningTotal runningTotal;

@@ -22,15 +22,15 @@ namespace BowlingTest.TestHelperTest
             testScoreCardPrinter.BeginPrint(unusedSourceFrame);
 
             testScoreCardPrinter.BeginPrint(unusedSourceThrow);
-            testScoreCardPrinter.PrintValue(throwOneValue);
+            testScoreCardPrinter.PrintPositiveIntValue(throwOneValue);
             testScoreCardPrinter.EndPrint(unusedSourceThrow);
 
             testScoreCardPrinter.BeginPrint(unusedSourceThrow);
-            testScoreCardPrinter.PrintValue(throwTwoValue);
+            testScoreCardPrinter.PrintPositiveIntValue(throwTwoValue);
             testScoreCardPrinter.EndPrint(unusedSourceThrow);
 
             testScoreCardPrinter.BeginPrint(unusedSourceRunningTotal);
-            testScoreCardPrinter.PrintValue(total);
+            testScoreCardPrinter.PrintPositiveIntValue(total);
             testScoreCardPrinter.EndPrint(unusedSourceRunningTotal);
 
             testScoreCardPrinter.EndPrint(unusedSourceFrame);
@@ -46,11 +46,11 @@ namespace BowlingTest.TestHelperTest
             testScoreCardPrinter.BeginPrint(unusedSourceFrame);
 
             testScoreCardPrinter.BeginPrint(unusedSourceThrow);
-            testScoreCardPrinter.PrintValue(throwOneValue);
+            testScoreCardPrinter.PrintPositiveIntValue(throwOneValue);
             testScoreCardPrinter.EndPrint(unusedSourceThrow);
 
             testScoreCardPrinter.BeginPrint(unusedSourceRunningTotal);
-            testScoreCardPrinter.PrintValue(total);
+            testScoreCardPrinter.PrintPositiveIntValue(total);
             testScoreCardPrinter.EndPrint(unusedSourceRunningTotal);
 
             testScoreCardPrinter.EndPrint(unusedSourceFrame);

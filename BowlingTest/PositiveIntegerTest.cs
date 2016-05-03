@@ -103,7 +103,7 @@ namespace BowlingTest
 
             positiveInteger.PrintOn(positiveIntegerPrinter);
 
-            Mock.Get(positiveIntegerPrinter).Verify(pip => pip.PrintValue(5));
+            Mock.Get(positiveIntegerPrinter).Verify(pip => pip.PrintPositiveIntValue(5));
         }
     }
 }

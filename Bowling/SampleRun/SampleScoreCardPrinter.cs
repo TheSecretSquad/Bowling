@@ -50,7 +50,7 @@ namespace Bowling
             printingRunningTotal = false;
         }
 
-        public void PrintValue(int value)
+        public void PrintPositiveIntValue(int value)
         {
             if(printingThrow)
                 Console.WriteLine($"Throw {currentFrameThrowCount}: {value}");

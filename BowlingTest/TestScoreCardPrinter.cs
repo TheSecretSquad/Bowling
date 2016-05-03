@@ -107,7 +107,7 @@ namespace BowlingTest
         private void ScoreFrameNumberWithValue(int frameNumber, int total) =>
             frameScores[FrameIndex(frameNumber)] = total;
 
-        public void PrintValue(int value)
+        public void PrintPositiveIntValue(int value)
         {
             if (printingThrow)
                 CurrentFrameThrows().Add(value);

@@ -6,33 +6,49 @@ namespace Bowling
     {
         static void Main(string[] args)
         {
-            IBowlingScoreCard bowlingScoreCard = CreateScoreCard();
-            SampleGame sampleGame = CreateSampleGame(bowlingScoreCard);
-            IBowlingScoreCardPrinter sampleScoreCardPrinter = CreateBleh();
+            new ConsoleTestGame("All Strikes", sampleGame => sampleGame.BowlAllStrikes())
+                .Run();
 
-            sampleGame.BowlAllStrikes();
-            Console.WriteLine("All Strikes");
-            Console.WriteLine("===========");
-            bowlingScoreCard.PrintOn(sampleScoreCardPrinter);
+            new ConsoleTestGame("All Open Frames", sampleGame => sampleGame.BowlAllOpenFrames())
+                .Run();
 
-            bowlingScoreCard = CreateScoreCard();
-            sampleGame = CreateSampleGame(bowlingScoreCard);
-            sampleScoreCardPrinter = CreateBleh();
-
-            Console.WriteLine("All Open Frames");
-            Console.WriteLine("===============");
-            sampleGame.BowlAllOpenFrames();
-            bowlingScoreCard.PrintOn(sampleScoreCardPrinter);
+            new ConsoleTestGame("All Spares", sampleGame => sampleGame.BowlAllSparesWithThrow1AndTenthFrameBonusThrow(new Throw(2), new Throw(5)))
+                .Run();
         }
 
-        private static IBowlingScoreCard CreateScoreCard() =>
-            new BowlingScoreCard(new Frames(), new Bonuses());
+        private class ConsoleTestGame
+        {
+            private static IBowlingScoreCard CreateScoreCard() =>
+                new BowlingScoreCard(new Frames(), new Bonuses());
 
-        private static SampleGame CreateSampleGame(IBowlingScoreCard bowlingScoreCard) =>
-            new SampleGame(bowlingScoreCard, new SampleGameFrameFactory());
+            private static SampleGame CreateSampleGame(IBowlingScoreCard bowlingScoreCard) =>
+                new SampleGame(bowlingScoreCard, new SampleGameFrameFactory());
 
-        private static SampleScoreCardPrinter CreateBleh() =>
-            new SampleScoreCardPrinter();
+            private static SampleScoreCardPrinter CreateSampleScoreCardPrinter() =>
+                new SampleScoreCardPrinter();
 
+            private IBowlingScoreCard bowlingScoreCard;
+            private SampleGame sampleGame;
+            private IBowlingScoreCardPrinter sampleScoreCardPrinter;
+            private string name;
+            private Action<SampleGame> gameRunner;
+
+            public ConsoleTestGame(string name, Action<SampleGame> gameRunner)
+            {
+                this.name = name;
+                this.gameRunner = gameRunner;
+                this.bowlingScoreCard = CreateScoreCard();
+                this.sampleGame = CreateSampleGame(bowlingScoreCard);
+                this.sampleScoreCardPrinter = CreateSampleScoreCardPrinter();
+            }
+
+            public void Run()
+            {
+                Console.WriteLine(name);
+                Console.WriteLine("===============");
+                gameRunner(sampleGame);
+                bowlingScoreCard.PrintOn(sampleScoreCardPrinter);
+            }
+        }
     }
 }

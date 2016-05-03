@@ -1,7 +1,7 @@
 ﻿using Bowling;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-// TODO: Add tests to check that Frame Throw values do not sum to above 10
+
 namespace BowlingTest.TestHelperTest
 {
     [TestClass]

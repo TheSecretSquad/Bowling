@@ -31,7 +31,7 @@
         public virtual void PrintOn(IPositiveIntegerPrinter positiveIntegerPrinter)
         {
             positiveIntegerPrinter.BeginPrint(this);
-            positiveIntegerPrinter.PrintValue(value);
+            positiveIntegerPrinter.PrintPositiveIntValue(value);
             positiveIntegerPrinter.EndPrint(this);
         }
 
