@@ -31,7 +31,7 @@ namespace Bowling
         private Frame nextFrame;
 
         public Frame()
-                : this(new Throw[0], new NoBonus(), new RunningTotal()) { }
+                : this(new Throw[2] { new Throw(0), new Throw(0) }, new NoBonus(), new RunningTotal()) { }
 
         public Frame(Throw throw1, IBonus bonus, RunningTotal runningTotal)
                 : this(new Throw[1] { throw1 }, bonus, runningTotal) { }

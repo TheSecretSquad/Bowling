@@ -53,6 +53,16 @@ namespace BowlingTest
         }
 
         [TestMethod]
+        public void BowlingAllOpenFramesEachFrameHasTwoThrows()
+        {
+            sampleGame.BowlAllOpenFrames();
+
+            bowlingScoreCard.PrintOn(testScoreCardPrinter);
+
+            testScoreCardPrinter.VerifyEachFrameHasNumberOfThrows(2);
+        }
+
+        [TestMethod]
         public void BowlingAllStrikesHas10Frames()
         {
             sampleGame.BowlAllStrikes();
