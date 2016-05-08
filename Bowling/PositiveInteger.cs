@@ -35,14 +35,14 @@
             positiveIntegerPrinter.EndPrint(this);
         }
 
+        public virtual int AsInteger()
+        {
+            return value;
+        }
+
         public static implicit operator PositiveInteger(int i)
         {
             return new PositiveInteger(i);
-        }
-
-        public static implicit operator int(PositiveInteger pi)
-        {
-            return pi.value;
         }
     }
 }

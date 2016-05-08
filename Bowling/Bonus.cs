@@ -4,27 +4,27 @@ namespace Bowling
 {
     public class Bonus : IBonus
     {
-        public static Bonus Strike(PositiveInteger toFrameNumber)
+        public static Bonus Strike(FrameNumber toFrameNumber)
         {
             return new Bonus(toFrameNumber, 2);
         }
 
-        public static Bonus Spare(PositiveInteger toFrameNumber)
+        public static Bonus Spare(FrameNumber toFrameNumber)
         {
             return new Bonus(toFrameNumber, 1);
         }
 
-        private PositiveInteger contributeToFrameNumber;
-        private PositiveInteger takeFromFrameNumber;
+        private FrameNumber contributeToFrameNumber;
+        private FrameNumber takeFromFrameNumber;
         private PositiveInteger numberOfThrowsRequired;
         private PositiveInteger numberOfThrowsReceived;
 
-        public Bonus(PositiveInteger toFrameNumber, PositiveInteger numberOfThrowsRequired)
+        public Bonus(FrameNumber toFrameNumber, PositiveInteger numberOfThrowsRequired)
         {
             this.contributeToFrameNumber = toFrameNumber;
             this.numberOfThrowsRequired = numberOfThrowsRequired;
             this.numberOfThrowsReceived = new PositiveInteger(0);
-            this.takeFromFrameNumber = ++toFrameNumber;
+            this.takeFromFrameNumber = toFrameNumber.AsInteger() + 1;
         }
 
         public void ContributeThrowForFrame(Throw aThrow, Frame frame)
@@ -44,9 +44,17 @@ namespace Bowling
             TargetNextFrameNumber();
         }
 
-        private void ReceivedThrow() => ++numberOfThrowsReceived;
+        private void ReceivedThrow() => numberOfThrowsReceived = numberOfThrowsReceived.AsInteger() + 1;
 
-        private void TargetNextFrameNumber() => ++takeFromFrameNumber;
+        private void TargetNextFrameNumber() => takeFromFrameNumber = NextFrameNumber(takeFromFrameNumber);
+
+        private FrameNumber NextFrameNumber(FrameNumber frameNumber)
+        {
+            if (frameNumber == new FrameNumber(10))
+                return frameNumber;
+
+            return takeFromFrameNumber.AsInteger() + 1;
+        }
 
         private void AcceptThrowForFrame(Throw aThrow, Frame frame) =>
             frame.AcceptThrow(aThrow);

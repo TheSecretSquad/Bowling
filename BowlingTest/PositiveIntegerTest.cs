@@ -36,10 +36,9 @@ namespace BowlingTest
         }
 
         [TestMethod]
-        public void TestImplicitConversions()
+        public void TestImplicitConversionFromInteger()
         {
             PositiveInteger one = 1;
-            int two = new PositiveInteger(2);
         }
 
         [TestMethod]
@@ -47,42 +46,6 @@ namespace BowlingTest
         public void ImplicitConversionFromNegativeIntFails()
         {
             PositiveInteger ten = -10;
-        }
-
-        [TestMethod]
-        public void SameValuesAreEqual()
-        {
-            Assert.AreEqual(new PositiveInteger(5), new PositiveInteger(5));
-        }
-
-        [TestMethod]
-        public void DifferentValuesAreNotEqual()
-        {
-            Assert.AreNotEqual(new PositiveInteger(5), new PositiveInteger(4));
-        }
-
-        [TestMethod]
-        public void NotEqualToNull()
-        {
-            Assert.AreNotEqual(new PositiveInteger(5), null);
-        }
-
-        [TestMethod]
-        public void EqualsOperatorForDifferentInstancesWithSameValueIsTrue()
-        {
-            Assert.IsTrue(new PositiveInteger(5) == new PositiveInteger(5));
-        }
-
-        [TestMethod]
-        public void NotEqualsOperatorForDifferentInstancesWithSameValueIsFalse()
-        {
-            Assert.IsFalse(new PositiveInteger(5) != new PositiveInteger(5));
-        }
-
-        [TestMethod]
-        public void NotEqualsOperatorForDifferentInstancesWithDifferentValueIsTrue()
-        {
-            Assert.IsTrue(new PositiveInteger(5) != new PositiveInteger(4));
         }
 
         [TestMethod]

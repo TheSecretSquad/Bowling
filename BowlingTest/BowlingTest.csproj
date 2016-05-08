@@ -57,10 +57,12 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BowlingScoreCardIntegerationTest.cs" />
+    <Compile Include="FrameNumberTest.cs" />
     <Compile Include="PositiveIntegerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleGameFrameFactoryTest.cs" />
     <Compile Include="SampleGameTest.cs" />
+    <Compile Include="TestHelpers\SampleValue.cs" />
     <Compile Include="TestScoreCardPrinterTest.cs" />
     <Compile Include="BowlingScoreCardTest.cs" />
     <Compile Include="FramesTest.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="BonusesTest.cs" />
     <Compile Include="BonusTest.cs" />
     <Compile Include="RunningTotalTest.cs" />
+    <Compile Include="ValueTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

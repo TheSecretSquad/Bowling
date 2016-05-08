@@ -24,48 +24,6 @@ namespace BowlingTest
         }
 
         [TestMethod]
-        public void SameValuesAreEqual()
-        {
-            Assert.AreEqual(new RunningTotal(5), new RunningTotal(5));
-        }
-
-        [TestMethod]
-        public void DifferentValuesAreNotEqual()
-        {
-            Assert.AreNotEqual(new RunningTotal(5), new RunningTotal(4));
-        }
-
-        [TestMethod]
-        public void NotEqualToNull()
-        {
-            Assert.AreNotEqual(new RunningTotal(5), null);
-        }
-
-        [TestMethod]
-        public void EqualsOperatorForDifferentInstancesWithSameValueIsTrue()
-        {
-            Assert.IsTrue(new RunningTotal(5) == new RunningTotal(5));
-        }
-
-        [TestMethod]
-        public void EqualsOperatorForDifferentInstancesWithDifferentValueIsFalse()
-        {
-            Assert.IsFalse(new RunningTotal(5) == new RunningTotal(4));
-        }
-
-        [TestMethod]
-        public void NotEqualsOperatorForDifferentInstancesWithSameValueIsFalse()
-        {
-            Assert.IsFalse(new RunningTotal(5) != new RunningTotal(5));
-        }
-
-        [TestMethod]
-        public void NotEqualsOperatorForDifferentInstancesWithDifferentValueIsTrue()
-        {
-            Assert.IsTrue(new RunningTotal(5) != new RunningTotal(4));
-        }
-
-        [TestMethod]
         public void WhenAddingANullThrow_ReturnsSameRunningTotalValue()
         {
             RunningTotal result = runningTotal.AddThrow(null);
@@ -80,6 +38,12 @@ namespace BowlingTest
 
             Assert.AreEqual(new RunningTotal(5), result);
             Assert.AreNotSame(runningTotal, result);
+        }
+
+        [TestMethod]
+        public void AsIntegerGivesSameIntValue()
+        {
+            Assert.AreEqual(5, new RunningTotal(5).AsInteger());
         }
 
         [TestMethod]

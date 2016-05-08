@@ -24,13 +24,13 @@ namespace Bowling
 
         private void ValidateValue()
         {
-            if (value > THROW_MAX_VALUE)
+            if (value.AsInteger() > THROW_MAX_VALUE)
                 throw new BadThrowException();
         }
 
         public bool HasSpare()
         {
-            return value != THROW_MAX_VALUE;
+            return value.AsInteger() != THROW_MAX_VALUE;
         }
 
         public RunningTotal AsRunningTotal()
@@ -38,14 +38,9 @@ namespace Bowling
             return new RunningTotal(value);
         }
 
-        public PositiveInteger AsInteger()
+        public virtual int AsInteger()
         {
-            return value;
-        }
-
-        public static implicit operator RunningTotal(Throw t)
-        {
-            return new RunningTotal(t.AsInteger());
+            return value.AsInteger();
         }
 
         public override int GetHashCode()
@@ -58,6 +53,16 @@ namespace Bowling
             throwPrinter.BeginPrint(this);
             value.PrintOn(throwPrinter);
             throwPrinter.EndPrint(this);
+        }
+
+        public static implicit operator Throw(PositiveInteger pi)
+        {
+            return new Throw(pi);
+        }
+
+        public static implicit operator Throw(int i)
+        {
+            return new Throw(i);
         }
     }
 }

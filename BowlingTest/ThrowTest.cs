@@ -22,13 +22,6 @@ namespace BowlingTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NegativeValueException))]
-        public void DoesNotAcceptValuesLessThanZero()
-        {
-            new Throw(-1);
-        }
-
-        [TestMethod]
         [ExpectedException(typeof(BadThrowException))]
         public void DoesNotAcceptValuesHigherThanTen()
         {
@@ -36,43 +29,31 @@ namespace BowlingTest
         }
 
         [TestMethod]
-        public void SameValuesAreEqual()
+        public void AsIntegerGivesSameIntValue()
         {
-            Assert.AreEqual(new Throw(5), new Throw(5));
+            Assert.AreEqual(5, new Throw(5).AsInteger());
         }
 
         [TestMethod]
-        public void DifferentValuesAreNotEqual()
+        public void AsRunningtotalGivesSameValueAsRunningTotal()
         {
-            Assert.AreNotEqual(new Throw(5), new Throw(4));
+            Assert.AreEqual(new RunningTotal(5), new Throw(5).AsRunningTotal());
         }
 
         [TestMethod]
-        public void NotEqualToNull()
+        public void TestImplicitConversionFromPositiveInteger()
         {
-            Assert.AreNotEqual(new Throw(5), null);
+            Throw one = new PositiveInteger(1);
         }
 
         [TestMethod]
-        public void EqualsOperatorForDifferentInstancesWithSameValueIsTrue()
+        public void TestImplicitConversionFromInteger()
         {
-            Assert.IsTrue(new Throw(5) == new Throw(5));
+            Throw one = 1;
         }
 
         [TestMethod]
-        public void NotEqualsOperatorForDifferentInstancesWithSameValueIsFalse()
-        {
-            Assert.IsFalse(new Throw(5) != new Throw(5));
-        }
-
-        [TestMethod]
-        public void NotEqualsOperatorForDifferentInstancesWithDifferentValueIsTrue()
-        {
-            Assert.IsTrue(new Throw(5) != new Throw(4));
-        }
-
-        [TestMethod]
-        public void PrintingThrowBeginsAndEndsPrinting()
+        public void WhenPrinting_BeginsAndEndsPrinting()
         {
             Throw theThrow = new Throw();
             
@@ -83,7 +64,7 @@ namespace BowlingTest
         }
 
         [TestMethod]
-        public void PrintingThrowPrintsTheThrowValue()
+        public void WhenPrinting_PrintsThrowValue()
         {
             PositiveInteger positiveInteger = Mock.Of<PositiveInteger>();
             Throw theThrow = new Throw(positiveInteger);

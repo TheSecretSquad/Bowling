@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Bowling
@@ -27,9 +28,12 @@ namespace Bowling
                 fromFrame.InitializeNextFrame(nextFrame);
         }
 
-        private Frame LastFrame() => FrameForFrameNumber(frames.Count);
+        private Frame LastFrame()
+        {
+            return frames.LastOrDefault();
+        }
 
-        public virtual void RequestBonusFromFrameNumberToFrameNumber(PositiveInteger fromFrameNumber, PositiveInteger toFrameNumber)
+        public virtual void RequestBonusFromFrameNumberToFrameNumber(FrameNumber fromFrameNumber, FrameNumber toFrameNumber)
         {
             ContributeToFrameFromFrame(FrameForFrameNumber(toFrameNumber), FrameForFrameNumber(fromFrameNumber));
         }
@@ -40,14 +44,14 @@ namespace Bowling
                 toFrame.ContributeFromFrame(fromFrame);
         }
 
-        private Frame FrameForFrameNumber(PositiveInteger frameNumber) =>
+        private Frame FrameForFrameNumber(FrameNumber frameNumber) =>
             FrameAtIndex(IndexOfFrameNumber(frameNumber));
 
         private Frame FrameAtIndex(int frameIndex) =>
             frames.ElementAtOrDefault(frameIndex);
 
-        private int IndexOfFrameNumber(int frameNumber) =>
-            frameNumber - 1;
+        private int IndexOfFrameNumber(FrameNumber frameNumber) =>
+            frameNumber.AsInteger() - 1;
 
         public virtual void PrintOn(IFramesPrinter framesPrinter)
         {

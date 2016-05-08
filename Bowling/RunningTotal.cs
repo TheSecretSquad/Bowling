@@ -28,12 +28,12 @@
 
         public virtual RunningTotal AddTotal(PositiveInteger total)
         {
-            return new RunningTotal(this.total + total);
+            return new RunningTotal(this.total.AsInteger() + total.AsInteger());
         }
 
-        public virtual PositiveInteger AsInteger()
+        public virtual int AsInteger()
         {
-            return total;
+            return total.AsInteger();
         }
 
         public virtual void PrintOn(IRunningTotalPrinter runningTotalPrinter)
