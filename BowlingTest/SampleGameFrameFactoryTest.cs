@@ -17,7 +17,7 @@ namespace BowlingTest.TestHelperTest
         [TestMethod]
         public void CreatesStrike()
         {
-            Frame strike = frameFactory.Strike(5);
+            Frame strike = frameFactory.Strike(new FrameNumber(5));
             Assert.IsNotNull(strike);
         }
 
@@ -31,7 +31,7 @@ namespace BowlingTest.TestHelperTest
         [TestMethod]
         public void CreatesSpareFrame()
         {
-            Frame spare = frameFactory.Spare(5, new Throw(5));
+            Frame spare = frameFactory.Spare(new FrameNumber(5), new Throw(5));
             Assert.IsNotNull(spare);
         }
 

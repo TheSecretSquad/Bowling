@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bowling.Printing;
+using System;
 using System.Linq;
 
 namespace Bowling
@@ -8,13 +9,13 @@ namespace Bowling
         public static Frame Open() =>
             new Frame();
 
-        public static Frame Strike(PositiveInteger frameNumber) =>
+        public static Frame Strike(FrameNumber frameNumber) =>
             new Frame(Throw.Strike(), Bonus.Strike(frameNumber), new RunningTotal());
 
         public static Frame TenthFrameStrike(Throw throw2, Throw throw3) =>
             new Frame(Throw.Strike(), throw2, throw3, new NoBonus(), new RunningTotal());
 
-        public static Frame Spare(PositiveInteger frameNumber, Throw throw1)
+        public static Frame Spare(FrameNumber frameNumber, Throw throw1)
         {
             if(!throw1.HasSpare())
                 throw new InvalidFrameException();

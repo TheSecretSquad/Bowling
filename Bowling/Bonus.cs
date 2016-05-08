@@ -6,12 +6,12 @@ namespace Bowling
     {
         public static Bonus Strike(FrameNumber toFrameNumber)
         {
-            return new Bonus(toFrameNumber, 2);
+            return new Bonus(toFrameNumber, new PositiveInteger(2));
         }
 
         public static Bonus Spare(FrameNumber toFrameNumber)
         {
-            return new Bonus(toFrameNumber, 1);
+            return new Bonus(toFrameNumber, new PositiveInteger(1));
         }
 
         private FrameNumber contributeToFrameNumber;
@@ -24,7 +24,7 @@ namespace Bowling
             this.contributeToFrameNumber = toFrameNumber;
             this.numberOfThrowsRequired = numberOfThrowsRequired;
             this.numberOfThrowsReceived = new PositiveInteger(0);
-            this.takeFromFrameNumber = toFrameNumber.AsInteger() + 1;
+            this.takeFromFrameNumber = toFrameNumber.Next();
         }
 
         public void ContributeThrowForFrame(Throw aThrow, Frame frame)
@@ -44,17 +44,9 @@ namespace Bowling
             TargetNextFrameNumber();
         }
 
-        private void ReceivedThrow() => numberOfThrowsReceived = numberOfThrowsReceived.AsInteger() + 1;
+        private void ReceivedThrow() => ++numberOfThrowsReceived;
 
-        private void TargetNextFrameNumber() => takeFromFrameNumber = NextFrameNumber(takeFromFrameNumber);
-
-        private FrameNumber NextFrameNumber(FrameNumber frameNumber)
-        {
-            if (frameNumber == new FrameNumber(10))
-                return frameNumber;
-
-            return takeFromFrameNumber.AsInteger() + 1;
-        }
+        private void TargetNextFrameNumber() => takeFromFrameNumber = takeFromFrameNumber.Next();
 
         private void AcceptThrowForFrame(Throw aThrow, Frame frame) =>
             frame.AcceptThrow(aThrow);

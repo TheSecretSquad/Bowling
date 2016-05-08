@@ -51,12 +51,12 @@
     <Compile Include="PositiveInteger.cs" />
     <Compile Include="IBonus.cs" />
     <Compile Include="IBowlingScoreCard.cs" />
-    <Compile Include="Printers\IFrameNumberPrinter.cs" />
-    <Compile Include="Printers\IPositiveIntegerPrinter.cs" />
-    <Compile Include="Printers\IFramePrinter.cs" />
-    <Compile Include="Printers\IFramesPrinter.cs" />
-    <Compile Include="Printers\IPrinter.cs" />
-    <Compile Include="Printers\IRunningTotalPrinter.cs" />
+    <Compile Include="Printing\IFrameNumberPrinter.cs" />
+    <Compile Include="Printing\IPositiveIntegerPrinter.cs" />
+    <Compile Include="Printing\IFramePrinter.cs" />
+    <Compile Include="Printing\IFramesPrinter.cs" />
+    <Compile Include="Printing\IPrinter.cs" />
+    <Compile Include="Printing\IRunningTotalPrinter.cs" />
     <Compile Include="NoBonus.cs" />
     <Compile Include="SampleRun\SampleGame.cs" />
     <Compile Include="SampleRun\SampleGameFrameFactory.cs" />
@@ -66,10 +66,10 @@
     <Compile Include="Frames.cs" />
     <Compile Include="SampleRun\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Printers\IBowlingScoreCardPrinter.cs" />
+    <Compile Include="Printing\IBowlingScoreCardPrinter.cs" />
     <Compile Include="Throw.cs" />
     <Compile Include="RunningTotal.cs" />
-    <Compile Include="Printers\IThrowPrinter.cs" />
+    <Compile Include="Printing\IThrowPrinter.cs" />
     <Compile Include="Value.cs" />
   </ItemGroup>
   <ItemGroup>

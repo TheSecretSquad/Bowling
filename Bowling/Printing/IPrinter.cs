@@ -1,4 +1,4 @@
-﻿namespace Bowling
+﻿namespace Bowling.Printing
 {
     public interface IPrinter<SourceType>
         where SourceType : class

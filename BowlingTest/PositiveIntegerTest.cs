@@ -1,4 +1,5 @@
 ﻿using Bowling;
+using Bowling.Printing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -36,16 +37,12 @@ namespace BowlingTest
         }
 
         [TestMethod]
-        public void TestImplicitConversionFromInteger()
+        public void IncrementOperatorReturnsIncrementedValue()
         {
-            PositiveInteger one = 1;
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NegativeValueException))]
-        public void ImplicitConversionFromNegativeIntFails()
-        {
-            PositiveInteger ten = -10;
+            PositiveInteger value = new PositiveInteger(5);
+            Assert.AreEqual(new PositiveInteger(5), value++);
+            Assert.AreEqual(new PositiveInteger(6), value);
+            Assert.AreEqual(new PositiveInteger(7), ++value);
         }
 
         [TestMethod]

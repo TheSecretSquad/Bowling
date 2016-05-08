@@ -1,4 +1,7 @@
-﻿namespace Bowling
+﻿using System;
+using Bowling.Printing;
+
+namespace Bowling
 {
     public class BowlingScoreCard : IBowlingScoreCard
     {

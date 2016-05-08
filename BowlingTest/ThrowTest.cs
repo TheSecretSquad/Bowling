@@ -1,4 +1,5 @@
 ﻿using Bowling;
+using Bowling.Printing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -38,18 +39,6 @@ namespace BowlingTest
         public void AsRunningtotalGivesSameValueAsRunningTotal()
         {
             Assert.AreEqual(new RunningTotal(5), new Throw(5).AsRunningTotal());
-        }
-
-        [TestMethod]
-        public void TestImplicitConversionFromPositiveInteger()
-        {
-            Throw one = new PositiveInteger(1);
-        }
-
-        [TestMethod]
-        public void TestImplicitConversionFromInteger()
-        {
-            Throw one = 1;
         }
 
         [TestMethod]

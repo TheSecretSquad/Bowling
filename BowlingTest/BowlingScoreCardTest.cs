@@ -1,4 +1,5 @@
 ﻿using Bowling;
+using Bowling.Printing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 

@@ -1,4 +1,6 @@
-﻿namespace Bowling
+﻿using Bowling.Printing;
+
+namespace Bowling
 {
     public class PositiveInteger : Value<PositiveInteger>
     {
@@ -40,9 +42,9 @@
             return value;
         }
 
-        public static implicit operator PositiveInteger(int i)
+        public static PositiveInteger operator ++(PositiveInteger pi)
         {
-            return new PositiveInteger(i);
+            return new PositiveInteger(pi.value + 1);
         }
     }
 }

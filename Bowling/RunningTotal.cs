@@ -1,4 +1,6 @@
-﻿namespace Bowling
+﻿using Bowling.Printing;
+
+namespace Bowling
 {
     public class RunningTotal : Value<RunningTotal>
     {

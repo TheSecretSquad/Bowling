@@ -7,7 +7,7 @@
             return Frame.Open();
         }
 
-        public virtual Frame Strike(PositiveInteger frameNumber)
+        public virtual Frame Strike(FrameNumber frameNumber)
         {
             return Frame.Strike(frameNumber);
         }
@@ -17,7 +17,7 @@
             return Frame.TenthFrameStrike(throw2, throw3);
         }
 
-        public virtual Frame Spare(PositiveInteger frameNumber, Throw throw1)
+        public virtual Frame Spare(FrameNumber frameNumber, Throw throw1)
         {
             return Frame.Spare(frameNumber, throw1);
         }

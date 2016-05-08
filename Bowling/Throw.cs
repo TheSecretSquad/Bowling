@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bowling.Printing;
+using System;
 
 namespace Bowling
 {
@@ -15,6 +16,8 @@ namespace Bowling
         private readonly PositiveInteger value;
 
         public Throw() : this(0) { }
+
+        public Throw(int value) : this(new PositiveInteger(value)) { }
 
         public Throw(PositiveInteger value)
         {
@@ -53,16 +56,6 @@ namespace Bowling
             throwPrinter.BeginPrint(this);
             value.PrintOn(throwPrinter);
             throwPrinter.EndPrint(this);
-        }
-
-        public static implicit operator Throw(PositiveInteger pi)
-        {
-            return new Throw(pi);
-        }
-
-        public static implicit operator Throw(int i)
-        {
-            return new Throw(i);
         }
     }
 }

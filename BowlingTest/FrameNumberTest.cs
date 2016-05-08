@@ -1,5 +1,5 @@
 ﻿using Bowling;
-using Bowling.Printers;
+using Bowling.Printing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -36,15 +36,15 @@ namespace BowlingTest
         }
 
         [TestMethod]
-        public void TestImplicitConversionFromPositiveInteger()
+        public void GivenFrameNumber6_WhenNext_ReturnsFrameNumber7()
         {
-            FrameNumber one = new PositiveInteger(1);
+            Assert.AreEqual(new FrameNumber(7), new FrameNumber(6).Next());
         }
 
         [TestMethod]
-        public void TestImplicitConversionFromInteger()
+        public void GivenFrameNumber10_WhenNext_ReturnsFrameNumber10()
         {
-            FrameNumber one = 1;
+            Assert.AreEqual(new FrameNumber(10), new FrameNumber(10).Next());
         }
 
         [TestMethod]

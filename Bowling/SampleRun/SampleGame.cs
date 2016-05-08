@@ -21,7 +21,7 @@ namespace Bowling
         public void BowlAllStrikes()
         {
             Bowl9FramesWithFrame(
-                nextFrame: (frameNumber) => sampleGameFrameFactory.Strike(frameNumber),
+                nextFrame: (frameNumber) => sampleGameFrameFactory.Strike(new FrameNumber(frameNumber)),
                 tenthFrame: () => sampleGameFrameFactory.TenthFrameStrike(throw2: new Throw(10), throw3: new Throw(10)));
         }
 
@@ -42,7 +42,7 @@ namespace Bowling
         public void BowlAllSparesWithThrow1AndTenthFrameBonusThrow(Throw throw1, Throw tenthFrameThrow3)
         {
             Bowl9FramesWithFrame(
-                nextFrame: (frameNumber) => sampleGameFrameFactory.Spare(frameNumber, throw1),
+                nextFrame: (frameNumber) => sampleGameFrameFactory.Spare(new FrameNumber(frameNumber), throw1),
                 tenthFrame: () => sampleGameFrameFactory.TenthFrameSpare(throw1, tenthFrameThrow3));
         }
     }

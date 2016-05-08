@@ -22,7 +22,7 @@ namespace BowlingTest
             numberOfThrowsRequired = 5;
             frame = Mock.Of<Frame>();
             aThrow = Mock.Of<Throw>();
-            bonus = new Bonus(targetFrameNumber, numberOfThrowsRequired);
+            bonus = new Bonus(new FrameNumber(targetFrameNumber), new PositiveInteger(numberOfThrowsRequired));
         }
 
         private void ContributeRequiredNumberOfThrows()
@@ -56,22 +56,22 @@ namespace BowlingTest
         [TestMethod]
         public void GivenTargetFrameNumber_WhenRequestingFromFrames_RequestsBonusFromFrameAfterTargetToTargetFrameNumber()
         {
-            FrameNumber frameNumberAfterTarget = 2;
+            FrameNumber frameNumberAfterTarget = new FrameNumber(2);
 
             bonus.RequestFromFrames(frames);
 
-            VerifyRequestsBonusFromFrameNumberToFrameNumber(frameNumberAfterTarget, targetFrameNumber);
+            VerifyRequestsBonusFromFrameNumberToFrameNumber(frameNumberAfterTarget, new FrameNumber(targetFrameNumber));
         }
 
         [TestMethod]
         public void GivenAThrowIsContributed_WhenRequestingFromFrames_RequestsBonusFromTwoFramesAfterTargetToTargetFrameNumber()
         {
-            FrameNumber frameNumberTwoAfterTarget = 3;
+            FrameNumber frameNumberTwoAfterTarget = new FrameNumber(3);
             bonus.ContributeThrowForFrame(aThrow, frame);
 
             bonus.RequestFromFrames(frames);
 
-            VerifyRequestsBonusFromFrameNumberToFrameNumber(frameNumberTwoAfterTarget, targetFrameNumber);
+            VerifyRequestsBonusFromFrameNumberToFrameNumber(frameNumberTwoAfterTarget, new FrameNumber(targetFrameNumber));
         }
 
         [TestMethod]

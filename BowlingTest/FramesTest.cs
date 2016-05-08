@@ -1,4 +1,5 @@
 ﻿using Bowling;
+using Bowling.Printing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -61,7 +62,7 @@ namespace BowlingTest
             frames.RecordFrame(frame1);
             frames.RecordFrame(frame2);
 
-            frames.RequestBonusFromFrameNumberToFrameNumber(2, 1);
+            frames.RequestBonusFromFrameNumberToFrameNumber(new FrameNumber(2), new FrameNumber(1));
 
             Mock.Get(frame1).Verify(f1 => f1.ContributeFromFrame(frame2));
         }
@@ -71,7 +72,7 @@ namespace BowlingTest
         {
             frames.RecordFrame(frame1);
 
-            frames.RequestBonusFromFrameNumberToFrameNumber(2, 1);
+            frames.RequestBonusFromFrameNumberToFrameNumber(new FrameNumber(2), new FrameNumber(1));
 
             Mock.Get(frame1).Verify(f1 => f1.ContributeFromFrame(It.IsAny<Frame>()), Times.Never);
         }

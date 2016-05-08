@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bowling.Printing;
+using System;
 
 namespace Bowling
 {

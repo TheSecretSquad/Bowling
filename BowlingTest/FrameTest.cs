@@ -1,4 +1,5 @@
 ﻿using Bowling;
+using Bowling.Printing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -57,7 +58,7 @@ namespace BowlingTest
         [ExpectedException(typeof(InvalidFrameException))]
         public void WhenSpareConstructed_FailsIfThrow1DoesNotHaveSpareAvailable()
         {
-            Frame.Spare(1, Throw.Strike());
+            Frame.Spare(new FrameNumber(1), Throw.Strike());
         }
 
         [TestMethod]
