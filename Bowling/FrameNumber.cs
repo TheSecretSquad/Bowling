@@ -4,8 +4,8 @@ namespace Bowling
 {
     public class FrameNumber : Value<FrameNumber>
     {
-        private const int FRAME_NUMBER_MAX_VALUE = 10;
         private const int FRAME_NUMBER_MIN_VALUE = 1;
+        private const int FRAME_NUMBER_MAX_VALUE = 10;
 
         private readonly PositiveInteger value;
 
