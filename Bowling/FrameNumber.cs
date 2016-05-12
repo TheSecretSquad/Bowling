@@ -21,9 +21,12 @@ namespace Bowling
 
         private void ValidateValue()
         {
-            if (value.AsInteger() < FRAME_NUMBER_MIN_VALUE || value.AsInteger() > FRAME_NUMBER_MAX_VALUE)
+            if (!IsValid())
                 throw new BadFrameNumberException();
         }
+
+        private bool IsValid() =>
+            AsInteger() >= FRAME_NUMBER_MIN_VALUE && AsInteger() <= FRAME_NUMBER_MAX_VALUE;
 
         public virtual int AsInteger()
         {
