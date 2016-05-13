@@ -5,6 +5,7 @@ namespace Bowling
 {
     public class RunningTotal : Value<RunningTotal>
     {
+        private const int MinimumTotal = 0;
         private readonly int total;
 
         public RunningTotal() : this(0) { }
@@ -17,12 +18,12 @@ namespace Bowling
 
         private void Validate()
         {
-            if (!Valid())
-                throw new BadRunningTotalException();
+            if (!IsPositive())
+                throw new NegativeRunningTotalException();
         }
 
-        private bool Valid() =>
-            total >= 0;
+        private bool IsPositive() =>
+            total >= MinimumTotal;
 
         public virtual RunningTotal AddThrow(Throw aThrow)
         {

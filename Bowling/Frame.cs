@@ -18,7 +18,7 @@ namespace Bowling
         public static Frame Spare(FrameNumber frameNumber, Throw throw1)
         {
             if(!throw1.HasSpare())
-                throw new InvalidFrameException();
+                throw new BadFrameException();
 
             return new Frame(throw1, Throw.SpareDifferenceOf(throw1), Bonus.Spare(frameNumber), new RunningTotal());
         }
@@ -53,7 +53,7 @@ namespace Bowling
             StartRunningTotal();
 
             if (this.throws.Contains(null))
-                throw new InvalidFrameException();
+                throw new BadFrameException();
         }
 
         private void StartRunningTotal() =>

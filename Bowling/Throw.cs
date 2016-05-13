@@ -5,13 +5,14 @@ namespace Bowling
 {
     public class Throw : Value<Throw>
     {
-        private const int HighestThrowValue = 10;
+        private const int MinThrowValue = 0;
+        private const int MaxThrowValue = 10;
 
         public static Throw Strike() =>
-            new Throw(HighestThrowValue);
+            new Throw(MaxThrowValue);
 
         public static Throw SpareDifferenceOf(Throw throw1) =>
-            new Throw(HighestThrowValue - throw1.AsInteger());
+            new Throw(MaxThrowValue - throw1.AsInteger());
 
         private readonly int throwValue;
 
@@ -25,13 +26,16 @@ namespace Bowling
 
         private void ValidateValue()
         {
-            if (throwValue > HighestThrowValue)
+            if (!IsInValidRange())
                 throw new BadThrowException();
         }
 
+        private bool IsInValidRange() =>
+            throwValue >= MinThrowValue && throwValue <= MaxThrowValue;
+
         public virtual bool HasSpare()
         {
-            return throwValue != HighestThrowValue;
+            return throwValue != MaxThrowValue;
         }
 
         public virtual RunningTotal AsRunningTotal()

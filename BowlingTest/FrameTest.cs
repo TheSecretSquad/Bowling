@@ -48,14 +48,14 @@ namespace BowlingTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidFrameException))]
+        [ExpectedException(typeof(BadFrameException))]
         public void WhenConstructed_CannotContainNullThrows()
         {
             new Frame(new Throw[1] { null }, bonus, runningTotal);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidFrameException))]
+        [ExpectedException(typeof(BadFrameException))]
         public void WhenSpareConstructed_FailsIfThrow1DoesNotHaveSpareAvailable()
         {
             Frame.Spare(new FrameNumber(1), Throw.Strike());

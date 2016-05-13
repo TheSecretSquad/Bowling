@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Bowling
 {
     [Serializable]
-    public class InvalidFrameException : Exception
+    public class BadFrameException : Exception
     {
     }
 }
