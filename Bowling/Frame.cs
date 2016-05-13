@@ -71,8 +71,7 @@ namespace Bowling
 
         public virtual void ContributeToFrame(Frame frame)
         {
-            foreach (Throw eachThrow in throws)
-                frame.ContributeThrow(eachThrow);
+            EachThrowDo(aThrow => frame.ContributeThrow(aThrow));
         }
 
         public virtual void ContributeThrow(Throw aThrow)
@@ -101,9 +100,13 @@ namespace Bowling
         public virtual void RebaseWithRunningTotal(RunningTotal runningTotal)
         {
             this.runningTotal = runningTotal;
+            EachThrowDo(aThrow => this.runningTotal = this.runningTotal.AddThrow(aThrow));
+        }
 
+        private void EachThrowDo(Action<Throw> throwAction)
+        {
             foreach (Throw eachThrow in throws)
-                this.runningTotal = this.runningTotal.AddThrow(eachThrow);
+                throwAction(eachThrow);
         }
 
         public virtual void PrintOn(IFramePrinter framePrinter)

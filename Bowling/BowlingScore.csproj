@@ -47,12 +47,10 @@
     <Compile Include="Bonuses.cs" />
     <Compile Include="FrameNumber.cs" />
     <Compile Include="InvalidFrameException.cs" />
-    <Compile Include="NegativeValueException.cs" />
-    <Compile Include="PositiveInteger.cs" />
+    <Compile Include="BadRunningTotalException.cs" />
     <Compile Include="IBonus.cs" />
     <Compile Include="IBowlingScoreCard.cs" />
     <Compile Include="Printing\IFrameNumberPrinter.cs" />
-    <Compile Include="Printing\IPositiveIntegerPrinter.cs" />
     <Compile Include="Printing\IFramePrinter.cs" />
     <Compile Include="Printing\IFramesPrinter.cs" />
     <Compile Include="Printing\IPrinter.cs" />

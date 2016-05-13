@@ -5,57 +5,55 @@ namespace Bowling
 {
     public class Throw : Value<Throw>
     {
-        private const int THROW_MAX_VALUE = 10;
+        private const int HighestThrowValue = 10;
 
         public static Throw Strike() =>
-            new Throw(THROW_MAX_VALUE);
+            new Throw(HighestThrowValue);
 
         public static Throw SpareDifferenceOf(Throw throw1) =>
-            new Throw(THROW_MAX_VALUE - throw1.AsInteger());
+            new Throw(HighestThrowValue - throw1.AsInteger());
 
-        private readonly PositiveInteger value;
+        private readonly int throwValue;
 
         public Throw() : this(0) { }
 
-        public Throw(int value) : this(new PositiveInteger(value)) { }
-
-        public Throw(PositiveInteger value)
+        public Throw(int throwValue)
         {
-            this.value = value;
+            this.throwValue = throwValue;
             ValidateValue();
         }
 
         private void ValidateValue()
         {
-            if (value.AsInteger() > THROW_MAX_VALUE)
+            if (throwValue > HighestThrowValue)
                 throw new BadThrowException();
         }
 
-        public bool HasSpare()
+        public virtual bool HasSpare()
         {
-            return value.AsInteger() != THROW_MAX_VALUE;
+            return throwValue != HighestThrowValue;
         }
 
-        public RunningTotal AsRunningTotal()
+        public virtual RunningTotal AsRunningTotal()
         {
-            return new RunningTotal(value);
+            return new RunningTotal(throwValue);
         }
 
         public virtual int AsInteger()
         {
-            return value.AsInteger();
+            return throwValue;
         }
 
         public override int GetHashCode()
         {
-            return value.GetHashCode();
+            return throwValue.GetHashCode();
         }
 
-        public virtual void PrintOn(IThrowPrinter throwPrinter)
+        public virtual void PrintOn(IThrowPrinter printer)
         {
-            throwPrinter.BeginPrint(this);
-            value.PrintOn(throwPrinter);
-            throwPrinter.EndPrint(this);
+            printer.BeginPrint(this);
+            printer.PrintThrow(throwValue);
+            printer.EndPrint(this);
         }
     }
 }

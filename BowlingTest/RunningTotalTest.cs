@@ -61,7 +61,7 @@ namespace BowlingTest
         {
             runningTotal.PrintOn(runningTotalPrinter);
 
-            Mock.Get(runningTotalPrinter).Verify(rtp => rtp.PrintPositiveIntValue(0));
+            Mock.Get(runningTotalPrinter).Verify(rtp => rtp.PrintRunningTotal(0));
         }
     }
 }

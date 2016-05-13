@@ -3,7 +3,7 @@
 namespace Bowling
 {
     [Serializable]
-    public class NegativeValueException : Exception
+    public class BadRunningTotalException : Exception
     {
     }
 }

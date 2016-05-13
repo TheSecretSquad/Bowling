@@ -6,24 +6,24 @@ namespace Bowling
     {
         public static Bonus Strike(FrameNumber toFrameNumber)
         {
-            return new Bonus(toFrameNumber, new PositiveInteger(2));
+            return new Bonus(toFrameNumber, 2);
         }
 
         public static Bonus Spare(FrameNumber toFrameNumber)
         {
-            return new Bonus(toFrameNumber, new PositiveInteger(1));
+            return new Bonus(toFrameNumber, 1);
         }
 
         private FrameNumber contributeToFrameNumber;
         private FrameNumber takeFromFrameNumber;
-        private PositiveInteger numberOfThrowsRequired;
-        private PositiveInteger numberOfThrowsReceived;
+        private int numberOfThrowsRequired;
+        private int numberOfThrowsReceived;
 
-        public Bonus(FrameNumber toFrameNumber, PositiveInteger numberOfThrowsRequired)
+        public Bonus(FrameNumber toFrameNumber, int numberOfThrowsRequired)
         {
             this.contributeToFrameNumber = toFrameNumber;
             this.numberOfThrowsRequired = numberOfThrowsRequired;
-            this.numberOfThrowsReceived = new PositiveInteger(0);
+            this.numberOfThrowsReceived = 0;
             this.takeFromFrameNumber = toFrameNumber.Next();
         }
 

@@ -31,12 +31,12 @@ namespace Bowling
             private IBowlingScoreCard bowlingScoreCard;
             private SampleGame sampleGame;
             private IBowlingScoreCardPrinter sampleScoreCardPrinter;
-            private string name;
+            private string gameName;
             private Action<SampleGame> gameRunner;
 
             public ConsoleTestGame(string name, Action<SampleGame> gameRunner)
             {
-                this.name = name;
+                this.gameName = name;
                 this.gameRunner = gameRunner;
                 this.bowlingScoreCard = CreateScoreCard();
                 this.sampleGame = CreateSampleGame(bowlingScoreCard);
@@ -45,7 +45,7 @@ namespace Bowling
 
             public void Run()
             {
-                Console.WriteLine(name);
+                Console.WriteLine(gameName);
                 Console.WriteLine("===============");
                 gameRunner(sampleGame);
                 bowlingScoreCard.PrintOn(sampleScoreCardPrinter);

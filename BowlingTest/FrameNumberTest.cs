@@ -61,13 +61,11 @@ namespace BowlingTest
         [TestMethod]
         public void WhenPrinting_PrintsFrameNumberValue()
         {
-            PositiveInteger positiveInteger = Mock.Of<PositiveInteger>();
-            Mock.Get(positiveInteger).Setup(e => e.AsInteger()).Returns(1);
-            FrameNumber frameNumber = new FrameNumber(positiveInteger);
+            FrameNumber frameNumber = new FrameNumber(5);
 
             frameNumber.PrintOn(frameNumberPrinter);
 
-            Mock.Get(positiveInteger).Verify(pi => pi.PrintOn(frameNumberPrinter));
+            Mock.Get(frameNumberPrinter).Verify(fnp => fnp.PrintFrameNumber(5));
         }
     }
 }

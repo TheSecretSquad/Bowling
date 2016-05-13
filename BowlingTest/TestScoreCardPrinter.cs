@@ -15,8 +15,6 @@ namespace BowlingTest
 
         protected IList<int> frameScores;
         protected ICollection<ICollection<int>> frameThrows;
-        private bool printingThrow;
-        private bool printingRunningTotal;
 
         public TestScoreCardPrinter()
         {
@@ -92,33 +90,30 @@ namespace BowlingTest
 
         public void EndPrint(Frame source) { }
 
-        public void BeginPrint(Throw source) { printingThrow = true; }
+        public void BeginPrint(Throw source) { }
 
-        public void EndPrint(Throw source) { printingThrow = false; }
+        public void EndPrint(Throw source) { }
+
+        public void PrintThrow(int aThrow)
+        {
+            CurrentFrameThrows().Add(aThrow);
+        }
 
         private ICollection<int> CurrentFrameThrows() =>
             ThrowsForFrame(CurrentFrameNumber());
 
         private int CurrentFrameNumber() => frameScores.Count();
 
-        public void BeginPrint(RunningTotal source) { printingRunningTotal = true; }
+        public void BeginPrint(RunningTotal source) { }
 
-        public void EndPrint(RunningTotal source) { printingRunningTotal = false; }
+        public void EndPrint(RunningTotal source) { }
+
+        public void PrintRunningTotal(int total)
+        {
+            ScoreFrameNumberWithValue(CurrentFrameNumber(), total);
+        }
 
         private void ScoreFrameNumberWithValue(int frameNumber, int total) =>
             frameScores[FrameIndex(frameNumber)] = total;
-
-        public void PrintPositiveIntValue(int value)
-        {
-            if (printingThrow)
-                CurrentFrameThrows().Add(value);
-
-            if (printingRunningTotal)
-                ScoreFrameNumberWithValue(CurrentFrameNumber(), value);
-        }
-
-        public void BeginPrint(PositiveInteger source) { }
-
-        public void EndPrint(PositiveInteger source) { }
     }
 }

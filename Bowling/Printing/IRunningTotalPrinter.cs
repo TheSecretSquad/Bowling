@@ -1,6 +1,7 @@
 ﻿namespace Bowling.Printing
 {
-    public interface IRunningTotalPrinter : IPrinter<RunningTotal>, IPositiveIntegerPrinter
+    public interface IRunningTotalPrinter : IPrinter<RunningTotal>
     {
+        void PrintRunningTotal(int total);
     }
 }

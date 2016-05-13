@@ -22,7 +22,7 @@ namespace BowlingTest
             numberOfThrowsRequired = 5;
             frame = Mock.Of<Frame>();
             aThrow = Mock.Of<Throw>();
-            bonus = new Bonus(new FrameNumber(targetFrameNumber), new PositiveInteger(numberOfThrowsRequired));
+            bonus = new Bonus(new FrameNumber(targetFrameNumber), numberOfThrowsRequired);
         }
 
         private void ContributeRequiredNumberOfThrows()

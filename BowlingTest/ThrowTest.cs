@@ -55,12 +55,11 @@ namespace BowlingTest
         [TestMethod]
         public void WhenPrinting_PrintsThrowValue()
         {
-            PositiveInteger positiveInteger = Mock.Of<PositiveInteger>();
-            Throw theThrow = new Throw(positiveInteger);
+            Throw theThrow = new Throw(5);
 
             theThrow.PrintOn(throwPrinter);
 
-            Mock.Get(positiveInteger).Verify(pi => pi.PrintOn(throwPrinter));
+            Mock.Get(throwPrinter).Verify(thp => thp.PrintThrow(5));
         }
     }
 }

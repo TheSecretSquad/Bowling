@@ -4,18 +4,16 @@ namespace Bowling
 {
     public class FrameNumber : Value<FrameNumber>
     {
-        private const int FRAME_NUMBER_MIN_VALUE = 1;
-        private const int FRAME_NUMBER_MAX_VALUE = 10;
+        private const int LowestFrameNumber = 1;
+        private const int HighestFrameNumber = 10;
 
-        private readonly PositiveInteger value;
+        private readonly int frameNumber;
 
         public FrameNumber() : this(1) { }
 
-        public FrameNumber(int value) : this(new PositiveInteger(value)) { }
-
-        public FrameNumber(PositiveInteger value)
+        public FrameNumber(int value)
         {
-            this.value = value;
+            this.frameNumber = value;
             ValidateValue();
         }
 
@@ -26,16 +24,16 @@ namespace Bowling
         }
 
         private bool IsValid() =>
-            AsInteger() >= FRAME_NUMBER_MIN_VALUE && AsInteger() <= FRAME_NUMBER_MAX_VALUE;
+            frameNumber >= LowestFrameNumber && frameNumber <= HighestFrameNumber;
 
         public virtual int AsInteger()
         {
-            return value.AsInteger();
+            return frameNumber;
         }
 
         public override int GetHashCode()
         {
-            return value.GetHashCode();
+            return frameNumber.GetHashCode();
         }
 
         public virtual FrameNumber Next()
@@ -44,15 +42,15 @@ namespace Bowling
         }
 
         private bool IsMaxFrameNumber() =>
-            AsInteger() == FRAME_NUMBER_MAX_VALUE;
+            AsInteger() == HighestFrameNumber;
 
         private FrameNumber NextFrameNumber() =>
-            new FrameNumber(AsInteger() + 1);
+            new FrameNumber(frameNumber + 1);
 
         public void PrintOn(IFrameNumberPrinter printer)
         {
             printer.BeginPrint(this);
-            value.PrintOn(printer);
+            printer.PrintFrameNumber(frameNumber);
             printer.EndPrint(this);
         }
     }
