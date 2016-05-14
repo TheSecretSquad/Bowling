@@ -3,8 +3,7 @@ using Bowling.Printing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
-// TODO: Refactor to add getters for testable values. I can write tests for getters to make sure they are returning
-// the right data
+
 namespace BowlingTest
 {
     public class TestScoreCardPrinter : IBowlingScoreCardPrinter

@@ -141,5 +141,44 @@ namespace BowlingTest
             testScoreCardPrinter.VerifyEachFrameNThroughMHasNumberOfThrows(1, 9, 2);
             testScoreCardPrinter.VerifyFrameNumberHasNumberOfThrows(10, 3);
         }
+
+        [TestMethod]
+        public void BowlingAllMissedSparesHas10Frames()
+        {
+            sampleGame.BowlAllMissedSpares(new Throw(5));
+
+            bowlingScoreCard.PrintOn(testScoreCardPrinter);
+
+            testScoreCardPrinter.VerifyHasNumberOfFrames(10);
+        }
+
+        [TestMethod]
+        public void BowlingAllMissedSparesHasCorrectScoreForEachFrame()
+        {
+            sampleGame.BowlAllMissedSpares(new Throw(5));
+
+            bowlingScoreCard.PrintOn(testScoreCardPrinter);
+
+            testScoreCardPrinter.VerifyFrameNumberHasScoreValue(1, 5);
+            testScoreCardPrinter.VerifyFrameNumberHasScoreValue(2, 10);
+            testScoreCardPrinter.VerifyFrameNumberHasScoreValue(3, 15);
+            testScoreCardPrinter.VerifyFrameNumberHasScoreValue(4, 20);
+            testScoreCardPrinter.VerifyFrameNumberHasScoreValue(5, 25);
+            testScoreCardPrinter.VerifyFrameNumberHasScoreValue(6, 30);
+            testScoreCardPrinter.VerifyFrameNumberHasScoreValue(7, 35);
+            testScoreCardPrinter.VerifyFrameNumberHasScoreValue(8, 40);
+            testScoreCardPrinter.VerifyFrameNumberHasScoreValue(9, 45);
+            testScoreCardPrinter.VerifyFrameNumberHasScoreValue(10, 50);
+        }
+
+        [TestMethod]
+        public void BowlingAllMissedSparesFramesEachFrameHasTwoThrows()
+        {
+            sampleGame.BowlAllMissedSpares(new Throw(5));
+
+            bowlingScoreCard.PrintOn(testScoreCardPrinter);
+
+            testScoreCardPrinter.VerifyEachFrameHasNumberOfThrows(2);
+        }
     }
 }

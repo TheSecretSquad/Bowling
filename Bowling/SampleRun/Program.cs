@@ -15,6 +15,9 @@ namespace Bowling
 
             new ConsoleTestGame("All Spares", sampleGame => sampleGame.BowlAllSparesWithThrow1AndTenthFrameBonusThrow(new Throw(2), new Throw(5)))
                 .Run();
+
+            new ConsoleTestGame("All Missed Spares", sampleGame => sampleGame.BowlAllMissedSpares(new Throw(5)))
+                .Run();
         }
 
         private class ConsoleTestGame

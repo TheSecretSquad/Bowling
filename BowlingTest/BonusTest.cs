@@ -92,7 +92,8 @@ namespace BowlingTest
 
             bonus.RequestFromFrames(frames);
 
-            Mock.Get(frames).Verify(frs => frs.RequestBonusFromFrameNumberToFrameNumber(It.IsAny<FrameNumber>(), It.IsAny<FrameNumber>()), Times.AtMostOnce());
+            Mock.Get(frames).Verify(frs =>
+                frs.RequestBonusFromFrameNumberToFrameNumber(It.IsAny<FrameNumber>(), It.IsAny<FrameNumber>()), Times.AtMostOnce());
         }
 
         [TestMethod]
@@ -102,7 +103,8 @@ namespace BowlingTest
 
             bonus.RequestFromFrames(frames);
 
-            Mock.Get(frames).Verify(frs => frs.RequestBonusFromFrameNumberToFrameNumber(It.IsAny<FrameNumber>(), It.IsAny<FrameNumber>()), Times.AtMost(numberOfThrowsRequired));
+            Mock.Get(frames).Verify(frs =>
+                frs.RequestBonusFromFrameNumberToFrameNumber(It.IsAny<FrameNumber>(), It.IsAny<FrameNumber>()), Times.AtMost(numberOfThrowsRequired));
         }
     }
 }

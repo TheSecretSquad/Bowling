@@ -61,7 +61,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleGameFrameFactoryTest.cs" />
     <Compile Include="SampleGameTest.cs" />
-    <Compile Include="TestHelpers\SampleValue.cs" />
     <Compile Include="TestScoreCardPrinterTest.cs" />
     <Compile Include="BowlingScoreCardTest.cs" />
     <Compile Include="FramesTest.cs" />

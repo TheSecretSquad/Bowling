@@ -1,5 +1,5 @@
 ﻿using System;
-// TODO: Remove printing duplication
+
 namespace Bowling
 {
     public class SampleGame
@@ -44,6 +44,14 @@ namespace Bowling
             Bowl9FramesWithFrame(
                 nextFrame: (frameNumber) => sampleGameFrameFactory.Spare(new FrameNumber(frameNumber), throw1),
                 tenthFrame: () => sampleGameFrameFactory.TenthFrameSpare(throw1, tenthFrameThrow3));
+        }
+
+        public void BowlAllMissedSpares(Throw throw1)
+        {
+            if (!throw1.HasSpare())
+                throw new Exception("Expecting a throw with a spare");
+
+            Bowl10FramesWithFrame((frameNumber) => new Frame(throw1, new Throw(0), new NoBonus(), new RunningTotal(0)));
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Bowling;
-using BowlingTest.TestHelpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BowlingTest
@@ -7,54 +6,69 @@ namespace BowlingTest
     [TestClass]
     public class ValueTest
     {
-        private Value<SampleValue> value;
+        public class TestValue : Value<TestValue>
+        {
+            private int value;
+
+            public TestValue(int value)
+            {
+                this.value = value;
+            }
+
+            public override int GetHashCode()
+            {
+                return value.GetHashCode();
+            }
+        }
+
+        private Value<TestValue> value;
 
         [TestInitialize]
         public void Setup()
         {
-            value = new SampleValue(1);
+            value = new TestValue(1);
         }
 
         [TestMethod]
         public void SameValuesAreEqual()
         {
-            Assert.AreEqual(new SampleValue(5), new SampleValue(5));
+            Assert.AreEqual(new TestValue(5), new TestValue(5));
         }
 
         [TestMethod]
         public void DifferentValuesAreNotEqual()
         {
-            Assert.AreNotEqual(new SampleValue(5), new SampleValue(4));
+            Assert.AreNotEqual(new TestValue(5), new TestValue(4));
         }
 
         [TestMethod]
         public void NotEqualToNull()
         {
-            Assert.AreNotEqual(new SampleValue(5), null);
+            Assert.AreNotEqual(new TestValue(5), null);
         }
 
         [TestMethod]
         public void EqualsOperatorForDifferentInstancesWithSameValueIsTrue()
         {
-            Assert.IsTrue(new SampleValue(5) == new SampleValue(5));
+            Assert.IsTrue(new TestValue(5) == new TestValue(5));
         }
 
         [TestMethod]
         public void EqualsOperatorForDifferentInstancesWithDifferentValueIsFalse()
         {
-            Assert.IsFalse(new SampleValue(5) == new SampleValue(4));
+            Assert.IsFalse(new TestValue(5) == new TestValue(4));
         }
 
         [TestMethod]
         public void NotEqualsOperatorForDifferentInstancesWithSameValueIsFalse()
         {
-            Assert.IsFalse(new SampleValue(5) != new SampleValue(5));
+            Assert.IsFalse(new TestValue(5) != new TestValue(5));
         }
 
         [TestMethod]
         public void NotEqualsOperatorForDifferentInstancesWithDifferentValueIsTrue()
         {
-            Assert.IsTrue(new SampleValue(5) != new SampleValue(4));
+            Assert.IsTrue(new TestValue(5) != new TestValue(4));
         }
     }
 }
